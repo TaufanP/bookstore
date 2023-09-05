@@ -1,12 +1,14 @@
 import {QueryClientProvider} from 'react-query';
 import {queryClient} from './src/config/reactQuery';
 import Routes from './src/routes';
+import {ToastProvider} from 'react-native-toast-notifications';
 
 export default function () {
-  console.log('hello');
   return (
     <QueryClientProvider client={queryClient}>
-      <Routes />
+      <ToastProvider>
+        <Routes />
+      </ToastProvider>
     </QueryClientProvider>
   );
 }
