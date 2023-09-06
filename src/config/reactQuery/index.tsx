@@ -1,5 +1,5 @@
+import {Toast} from 'react-native-toast-notifications';
 import {QueryCache, QueryClient, QueryClientProvider} from 'react-query';
-import toast from '../../utils/toast';
 
 export const queryClient = new QueryClient({
   queryCache: new QueryCache({
@@ -10,7 +10,7 @@ export const queryClient = new QueryClient({
         'message' in error &&
         typeof error?.message === 'string'
       )
-        toast.show(error?.message);
+        Toast.show(error?.message);
     },
   }),
 });
@@ -24,7 +24,7 @@ const queryClientTest = new QueryClient({
         'message' in error &&
         typeof error?.message === 'string'
       )
-        console.log(error?.message);
+        return error?.message;
     },
   }),
 });

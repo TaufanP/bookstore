@@ -1,11 +1,11 @@
 import React from 'react';
-import {Button, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
+import colors from '../../../constants/colors';
+import spacing from '../../../constants/spacing';
 import {Book} from '../../../core/domain/models/book';
 import {ListView, Phrase} from '../../atoms';
-import {BookTile} from '../../molecules';
+import {BookTile, EmptyView} from '../../molecules';
 import styles from './styles';
-import spacing from '../../../constants/spacing';
-import colors from '../../../constants/colors';
 
 interface BookTileRendererProps {
   data?: Book[];
@@ -13,12 +13,7 @@ interface BookTileRendererProps {
 
 export default function ({data}: BookTileRendererProps) {
   return (
-    <View
-      style={{
-        height: '100%',
-        justifyContent: 'center',
-      }}
-    >
+    <>
       {!!data && data.length !== 0 ? (
         <ListView
           data={data}
@@ -26,33 +21,12 @@ export default function ({data}: BookTileRendererProps) {
           keyExtractor={keyExtractor}
           contentContainerStyle={styles.container}
           estimatedItemSize={126}
+          viewStyle={styles.listContainer}
         />
       ) : (
-        <View
-          style={{
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-            gap: spacing.sp16,
-            height: '100%',
-          }}
-        >
-          <Phrase type="m">Add your first book!</Phrase>
-          <TouchableOpacity
-            style={{
-              paddingHorizontal: spacing.sp16,
-              paddingVertical: spacing.sp8,
-              borderRadius: 4,
-              backgroundColor: 'red',
-            }}
-          >
-            <Phrase color={colors.white} type="baseBold">
-              Add Book
-            </Phrase>
-          </TouchableOpacity>
-        </View>
+        <EmptyView buttonLabel="Add Book" description="Add your first book!" />
       )}
-    </View>
+    </>
   );
 }
 

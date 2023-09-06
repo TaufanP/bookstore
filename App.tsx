@@ -5,10 +5,17 @@ import {ToastProvider} from 'react-native-toast-notifications';
 
 export default function () {
   return (
-    <QueryClientProvider client={queryClient}>
-      <ToastProvider>
+    <ToastProvider
+      duration={5000}
+      animationDuration={250}
+      successColor="green"
+      dangerColor="red"
+      warningColor="orange"
+      normalColor="gray"
+    >
+      <QueryClientProvider client={queryClient}>
         <Routes />
-      </ToastProvider>
-    </QueryClientProvider>
+      </QueryClientProvider>
+    </ToastProvider>
   );
 }
