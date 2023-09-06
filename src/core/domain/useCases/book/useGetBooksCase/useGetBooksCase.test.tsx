@@ -23,8 +23,8 @@ describe('Get Books Use Case', () => {
     });
 
     await waitFor(() => {
-      expect(result.current).toHaveLength(2);
-      expect(result.current?.[0]?.title).toEqual('test1');
+      expect(result.current?.data).toHaveLength(2);
+      expect(result.current?.data?.[0]?.title).toEqual('test1');
       expect(repository.getBooks).toHaveBeenCalledTimes(1);
     });
   });
@@ -39,8 +39,8 @@ describe('Get Books Use Case', () => {
     });
 
     await waitFor(() => {
-      expect(result.current).toBeInstanceOf(Array);
-      expect(result.current).toHaveLength(0);
+      expect(result.current?.data).toBeInstanceOf(Array);
+      expect(result.current?.data).toHaveLength(0);
       expect(repository.getBooks).toHaveBeenCalledTimes(1);
     });
   });

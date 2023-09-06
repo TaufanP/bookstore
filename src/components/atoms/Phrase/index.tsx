@@ -8,6 +8,7 @@ const PhraseType = {
   xs: 'xs',
   sm: 'sm',
   base: 'base',
+  baseBold: 'baseBold',
   m: 'm',
   mBold: 'mBold',
   l: 'l',

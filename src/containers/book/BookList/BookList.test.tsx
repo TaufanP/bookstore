@@ -11,8 +11,7 @@ const books = ['book1', 'book2', 'book3', 'book4', 'book5'].map(book => ({
   cover: DUMMY_IMAGE_URL,
 }));
 
-type Model = () => {books: Book[] | undefined};
-
+type Model = () => {books: Book[]};
 let useBookListViewModel: Model;
 
 describe('Book List Screen', () => {
@@ -22,5 +21,23 @@ describe('Book List Screen', () => {
     render(<BookList useBookListViewModel={useBookListViewModel} />);
 
     expect(screen.queryAllByText('Book Title')).toHaveLength(books.length);
+    expect(screen.queryByText('Add your first book!')).toBeNull();
+    expect(screen.queryByText('Add Book')).toBeNull();
+  });
+
+  describe('Empty Book list', () => {
+    beforeEach(() => {
+      useBookListViewModel = jest.fn().mockReturnValue({books: []});
+
+      render(<BookList useBookListViewModel={useBookListViewModel} />);
+    });
+
+    it('Should display empty state message', () => {
+      expect(screen.getByText('Add your first book!')).toBeTruthy();
+    });
+
+    it('Should provide call to action button', () => {
+      expect(screen.getByText('Add Book')).toBeTruthy();
+    });
   });
 });

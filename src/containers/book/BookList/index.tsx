@@ -10,7 +10,7 @@ function BookList({useBookListViewModel}: Props) {
 
   return (
     <Screen>
-      <BookTileRenderer data={books} />
+      <BookTileRenderer data={[]} />
     </Screen>
   );
 }
