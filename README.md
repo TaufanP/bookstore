@@ -78,11 +78,20 @@ To learn more about React Native, take a look at the following resources:
 - [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
 - [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
 
-🔨 - new package
-🪄 - code fix
-🏃‍♂️ - ongoing feature
-🔥 - issues
-🧪 - code enhancement
-💡 - new test case
-🧶 - refactor
-⭐ - new feature
+# Commit Symbols
+
+🔨 - new package <br/>
+🪄 - code fix <br/>
+🏃‍♂️ - ongoing feature <br/>
+🔥 - issues <br/>
+🧪 - code enhancement <br/>
+💡 - new test case <br/>
+🧶 - refactor <br/>
+⭐ - new feature <br/>
+🧱 - new/changes component <br/>
+
+### To Do:
+
+- Test case for booklist screen for error state and loading state.
+- Add pull to refresh props to ListView.
+- Add axios interceptors.

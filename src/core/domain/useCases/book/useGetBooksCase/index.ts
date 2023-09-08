@@ -1,4 +1,4 @@
-import {useQuery} from 'react-query';
+import {useQuery} from '@tanstack/react-query';
 import {BookRepository} from '../../../repositories/book';
 import {Book} from '../../../models/book';
 
