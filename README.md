@@ -85,3 +85,4 @@ To learn more about React Native, take a look at the following resources:
 🧪 - code enhancement
 💡 - new test case
 🧶 - refactor
+⭐ - new feature
