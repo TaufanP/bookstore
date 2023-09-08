@@ -1,17 +1,22 @@
 import React from 'react';
-import {TouchableOpacity, View} from 'react-native';
-import colors from '../../../constants/colors';
-import spacing from '../../../constants/spacing';
 import {Book} from '../../../core/domain/models/book';
-import {ListView, Phrase} from '../../atoms';
-import {BookTile, EmptyView} from '../../molecules';
+import {ListView} from '../../atoms';
+import {BookTile, StatesHolder} from '../../molecules';
 import styles from './styles';
 
 interface BookTileRendererProps {
   data?: Book[];
+  isLoading?: boolean;
+  isError?: boolean;
+  error?: string;
 }
 
-export default function ({data}: BookTileRendererProps) {
+export default function ({
+  data,
+  isLoading,
+  isError,
+  error,
+}: BookTileRendererProps) {
   return (
     <>
       {!!data && data.length !== 0 ? (
@@ -24,7 +29,17 @@ export default function ({data}: BookTileRendererProps) {
           viewStyle={styles.listContainer}
         />
       ) : (
-        <EmptyView buttonLabel="Add Book" description="Add your first book!" />
+        <StatesHolder
+          isLoading={isLoading}
+          buttonLabel={isError ? 'Try Again' : 'Add Book'}
+          description={
+            isError
+              ? error
+              : isLoading
+              ? 'Getting our best collections...'
+              : 'Add your first book!'
+          }
+        />
       )}
     </>
   );

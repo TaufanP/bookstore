@@ -1,5 +1,6 @@
 const originalColors = {
   text100: '#333',
+  danger: '#DE4037',
   white: '#FFF',
 };
 

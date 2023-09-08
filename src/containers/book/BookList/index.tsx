@@ -6,11 +6,11 @@ import {Screen} from '../../../components/templates';
 type Props = DependenciesOf<BookGraph, 'useBookListViewModel'>;
 
 function BookList({useBookListViewModel}: Props) {
-  const {books} = useBookListViewModel();
+  const books = useBookListViewModel();
 
   return (
     <Screen>
-      <BookTileRenderer data={books} />
+      <BookTileRenderer {...books} error={books?.error?.message} />
     </Screen>
   );
 }

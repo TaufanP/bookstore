@@ -3,14 +3,8 @@ import {QueryCache, QueryClient, QueryClientProvider} from 'react-query';
 
 export const queryClient = new QueryClient({
   queryCache: new QueryCache({
-    onError(error) {
-      if (
-        typeof error === 'object' &&
-        !!error &&
-        'message' in error &&
-        typeof error?.message === 'string'
-      )
-        Toast.show(error?.message);
+    onError(error: any) {
+      Toast.show(error?.message);
     },
   }),
 });
