@@ -17,6 +17,13 @@ export default function ({
   isError,
   error,
 }: BookTileRendererProps) {
+  const buttonLabel = isError ? 'Try Again' : 'Add Book';
+  const description = isError
+    ? error
+    : isLoading
+    ? 'Getting our best collections...'
+    : 'Add your first book!';
+
   return (
     <>
       {!!data && data.length !== 0 ? (
@@ -31,14 +38,8 @@ export default function ({
       ) : (
         <StatesHolder
           isLoading={isLoading}
-          buttonLabel={isError ? 'Try Again' : 'Add Book'}
-          description={
-            isError
-              ? error
-              : isLoading
-              ? 'Getting our best collections...'
-              : 'Add your first book!'
-          }
+          buttonLabel={buttonLabel}
+          description={description}
         />
       )}
     </>

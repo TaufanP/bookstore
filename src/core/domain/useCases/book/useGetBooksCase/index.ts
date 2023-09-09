@@ -1,16 +1,13 @@
 import {useQuery} from '@tanstack/react-query';
 import {BookRepository} from '../../../repositories/book';
 import {Book} from '../../../models/book';
+import {QueryUseCase} from '../../../../../../types/useCase';
 
-export function useGetBooksCase(repository: BookRepository): {
-  data: Book[];
-  error?: any;
-  isLoading: boolean;
-  isError?: boolean;
-} {
+export default function (repository: BookRepository): QueryUseCase<Book> {
   const {data, error, isLoading, isError} = useQuery({
     queryKey: ['books', 'list'],
     queryFn: () => repository.getBooks(),
   });
-  return {data: data || [], error, isLoading, isError};
+  //@ts-ignore
+  return {data: data || [], error: error?.message, isLoading, isError};
 }

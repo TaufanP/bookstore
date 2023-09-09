@@ -10,7 +10,7 @@ function BookList({useBookListViewModel}: Props) {
 
   return (
     <Screen>
-      <BookTileRenderer {...books} error={books?.error?.message} />
+      <BookTileRenderer {...books} />
     </Screen>
   );
 }

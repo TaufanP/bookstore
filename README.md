@@ -92,6 +92,5 @@ To learn more about React Native, take a look at the following resources:
 
 ### To Do:
 
-- Test case for booklist screen for error state and loading state.
 - Add pull to refresh props to ListView.
 - Add axios interceptors.
