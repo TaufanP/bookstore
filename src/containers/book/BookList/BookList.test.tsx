@@ -17,16 +17,16 @@ const emptyDescription = 'Add your first book!';
 const error = 'Cannot retrieve the books.';
 const loadingDescription = 'Getting our best collections...';
 
-type Model = () => QueryUseCase<Book>;
-let useBookListViewModel: Model;
+type Model = QueryUseCase<Book>;
+let useBookListViewModel: () => {getBooks: Model};
 
 beforeEach(() => {
-  useBookListViewModel = () => ({data: []});
+  useBookListViewModel = () => ({getBooks: {data: []}});
 });
 
 describe('Book List Screen', () => {
   it('Display list of books', () => {
-    useBookListViewModel = jest.fn().mockReturnValue({data: books});
+    useBookListViewModel = jest.fn().mockReturnValue({getBooks: {data: books}});
 
     render(<BookList useBookListViewModel={useBookListViewModel} />);
 
@@ -36,7 +36,7 @@ describe('Book List Screen', () => {
 
   describe('Empty state', () => {
     beforeEach(() => {
-      useBookListViewModel = jest.fn().mockReturnValue({data: []});
+      useBookListViewModel = jest.fn().mockReturnValue({getBooks: {data: []}});
 
       render(<BookList useBookListViewModel={useBookListViewModel} />);
     });
@@ -55,9 +55,11 @@ describe('Book List Screen', () => {
   describe('Error state', () => {
     it('Should show error state when failed to retrieve the first collection of books', () => {
       useBookListViewModel = jest.fn().mockReturnValue({
-        data: [],
-        isError: true,
-        error,
+        getBooks: {
+          data: [],
+          isError: true,
+          error,
+        },
       });
 
       render(<BookList useBookListViewModel={useBookListViewModel} />);
@@ -70,8 +72,10 @@ describe('Book List Screen', () => {
   describe('Loading state', () => {
     it('Should show the loading state when retrieving the collection for the first time', () => {
       useBookListViewModel = jest.fn().mockReturnValue({
-        data: [],
-        isLoading: true,
+        getBooks: {
+          data: [],
+          isLoading: true,
+        },
       });
 
       render(<BookList useBookListViewModel={useBookListViewModel} />);

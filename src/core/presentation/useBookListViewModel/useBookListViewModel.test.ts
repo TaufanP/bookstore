@@ -22,8 +22,8 @@ describe('Book List View Model', () => {
     });
 
     await waitFor(() => {
-      expect(result.current.data).toHaveLength(2);
-      expect(result.current?.data?.[0]?.title).toEqual('test1');
+      expect(result.current.getBooks.data).toHaveLength(2);
+      expect(result.current?.getBooks.data?.[0]?.title).toEqual('test1');
       expect(repository.getBooks).toHaveBeenCalledTimes(1);
     });
   });

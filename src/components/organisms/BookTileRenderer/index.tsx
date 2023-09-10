@@ -1,21 +1,24 @@
 import React from 'react';
 import {Book} from '../../../core/domain/models/book';
 import {ListView} from '../../atoms';
+import {ListViewProps} from '../../atoms/ListView';
 import {BookTile, StatesHolder} from '../../molecules';
 import styles from './styles';
 
 interface BookTileRendererProps {
   data?: Book[];
+  error?: string;
   isLoading?: boolean;
   isError?: boolean;
-  error?: string;
+  pullRefresh: ListViewProps<any>['pullRefresh'];
 }
 
 export default function ({
   data,
+  error,
   isLoading,
   isError,
-  error,
+  pullRefresh,
 }: BookTileRendererProps) {
   const buttonLabel = isError ? 'Try Again' : 'Add Book';
   const description = isError
@@ -28,11 +31,12 @@ export default function ({
     <>
       {!!data && data.length !== 0 ? (
         <ListView
-          data={data}
-          renderItem={renderItem}
-          keyExtractor={keyExtractor}
           contentContainerStyle={styles.container}
+          data={data}
           estimatedItemSize={126}
+          keyExtractor={keyExtractor}
+          pullRefresh={pullRefresh}
+          renderItem={renderItem}
           viewStyle={styles.listContainer}
         />
       ) : (

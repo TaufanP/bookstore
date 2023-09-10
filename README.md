@@ -92,5 +92,4 @@ To learn more about React Native, take a look at the following resources:
 
 ### To Do:
 
-- Add pull to refresh props to ListView.
 - Add axios interceptors.
