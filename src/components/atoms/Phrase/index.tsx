@@ -19,6 +19,7 @@ const PhraseType = {
 interface PhraseProps extends TextProps {
   type?: keyof typeof PhraseType;
   color?: string;
+  center?: boolean;
 }
 
 function Phrase({
@@ -26,10 +27,18 @@ function Phrase({
   type = 'base',
   style,
   color = colors.text100,
+  center,
   ...props
 }: PhraseProps) {
   return (
-    <Text style={[styles[type], style, {color}]} {...props}>
+    <Text
+      style={[
+        styles[type],
+        style,
+        {color, ...(center && {textAlign: 'center'})},
+      ]}
+      {...props}
+    >
       {children}
     </Text>
   );

@@ -21,7 +21,9 @@ export default function ({
   return (
     <View style={styles.container} {...props}>
       {!!isLoading && <ActivityIndicator color={colors.danger} size={56} />}
-      <Phrase type="m">{description}</Phrase>
+      <Phrase type="m" center>
+        {description}
+      </Phrase>
       {!isLoading && (
         <Button>
           <Phrase color={colors.white} type="baseBold" onPress={onPress}>

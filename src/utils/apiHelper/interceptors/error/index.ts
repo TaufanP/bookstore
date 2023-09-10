@@ -8,6 +8,15 @@ export default function (error: AxiosError) {
 
   if (statusCode === null) return Promise.reject(error);
 
+  if (statusCode === 400) {
+    // Bad Request
+    // logging('Bad Request detected', undefined, 'error', `${LOCATION}/400`);
+    return Promise.reject({
+      ...(error?.response?.data || {}),
+      status: statusCode,
+    });
+  }
+
   if (statusCode === 401) {
     // Unauthorized user
     // logging('Unauthorized user', undefined, 'info', `${LOCATION}/401`);
@@ -15,7 +24,13 @@ export default function (error: AxiosError) {
       ...(error?.response?.data || {}),
       status: statusCode,
     });
-    return;
+  }
+
+  if (statusCode === 404) {
+    const customError = new Error(
+      'We cannot process your request, please try again later!',
+    );
+    return Promise.reject(customError);
   }
 
   if (statusCode >= 500) {
@@ -23,16 +38,6 @@ export default function (error: AxiosError) {
     // logging(JSON.stringify(error?.response), 'er', 'error');
     // logging('Server error', undefined, 'error', `${LOCATION}/500`);
     // @ts-ignore
-    return Promise.reject({
-      ...(error?.response?.data || {}),
-      status: statusCode,
-    });
-    return;
-  }
-
-  if (statusCode === 400) {
-    // Bad Request
-    // logging('Bad Request detected', undefined, 'error', `${LOCATION}/400`);
     return Promise.reject({
       ...(error?.response?.data || {}),
       status: statusCode,

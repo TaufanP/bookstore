@@ -3,11 +3,12 @@ import spacing from '../../../constants/spacing';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
+    flex: 1,
     gap: spacing.sp16,
     height: '100%',
+    justifyContent: 'center',
+    paddingHorizontal: spacing.sp24,
   },
 });
 

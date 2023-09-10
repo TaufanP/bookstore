@@ -3,4 +3,5 @@ export default {
   sp12: 12,
   sp14: 14,
   sp16: 16,
+  sp24: 24,
 };
